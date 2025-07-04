@@ -1,0 +1,191 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+/* Header Styles */
+header {
+    background-color: #007bff; /* Primary blue color */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Navigation Bar */
+.navbar {
+    margin-bottom: 1rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+    color: #007bff !important; /* Active link color */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f8f9fa;
+    color: #6c757d; /* Muted text color */
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 1px solid #dee2e6; /* Light border at the top */
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* Main Content */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #dee2e6;
+}
+
+table th {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+/* Preformatted Text (Logs) */
+pre {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+    overflow-x: auto;
+}
+
+/* Alerts */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.bg-primary {
+    background-color: #007bff !important;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+/* Added Fixes and Improvements */
+.navbar-light .navbar-brand {
+    color: #007bff;
+}
+
+.navbar-light .navbar-brand:hover {
+    color: #0056b3;
+}
+
+.navbar-light .nav-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}

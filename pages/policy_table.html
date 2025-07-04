@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy Table - Track AFUHSD Policies</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Header and Navigation -->
+    {% include "header_and_nav.html" %}
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        <section>
+            <h2>Policy Manual</h2>
+            <p>Browse policies in the AFUHSD Policy Manual.</p>
+
+            <!-- Search Bar -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="text" id="searchBar" class="form-control" placeholder="Search policies by name or number...">
+                </div>
+            </div>
+
+            <!-- Scrollable Table Container -->
+            <div class="table-responsive" style="max-height: 600px; overflow-y: auto; border: 1px solid #ccc;">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Policy Number</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="policyTableBody">
+                        {% for policy in policies %}
+                        <tr class="policy-row">
+                            <td><a href="{{ policy.url }}" target="_blank">{{ policy.policy_number }}</a></td>
+                            <td>{{ policy.name }}</td>
+                            <td>{{ policy.policy_type }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3" class="text-center">No policies available</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/static/script.js"></script>
+
+    <!-- JavaScript for Search Functionality -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchBar = document.getElementById("searchBar");
+            const policyRows = document.querySelectorAll(".policy-row");
+
+            // Search functionality
+            searchBar.addEventListener("input", function () {
+                const query = this.value.toLowerCase();
+                policyRows.forEach(row => {
+                    const policyNumber = row.querySelector("td:first-child").innerText.toLowerCase();
+                    const policyName = row.querySelector("td:nth-child(2)").innerText.toLowerCase();
+                    row.style.display = (policyNumber.includes(query) || policyName.includes(query)) ? "" : "none";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

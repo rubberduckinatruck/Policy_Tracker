@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policy Changes - Track AFUHSD Policies</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Header and Navigation -->
+    {% include "header_and_nav.html" %}
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        <section>
+            <h2>Tracked Policy Changes</h2>
+            <p>View and filter recent modifications to policies.</p>
+
+            <!-- Filter Options -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="dateFilter">Filter by Date:</label>
+                    <input type="date" id="dateFilter" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="changeTypeFilter">Filter by Change Type:</label>
+                    <select id="changeTypeFilter" class="form-control">
+                        <option value="">All</option>
+                        <option value="NEW">New</option>
+                        <option value="EDITED">Edited</option>
+                        <option value="DELETED">Deleted</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Changes Table -->
+            <div class="table-responsive" style="max-height: 600px; overflow-y: auto; border: 1px solid #ccc;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Policy Number</th>
+                            <th>Name</th>
+                            <th>Change Type</th>
+                            <th>Last Modified</th>
+                        </tr>
+                    </thead>
+                    <tbody id="changesTable">
+                        {% for change in policy_changes %}
+                        <tr data-date="{{ change.changed_at[:10] }}" data-type="{{ change.change_type }}">
+                            <td><a href="{{ change.url }}" target="_blank">{{ change.policy_number }}</a></td>
+                            <td>{{ change.name }}</td>
+                            <td>{{ change.change_type }}</td>
+                            <td>{{ change.changed_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/static/script.js"></script>
+
+    <!-- JavaScript for Filtering -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const dateFilter = document.getElementById("dateFilter");
+            const changeTypeFilter = document.getElementById("changeTypeFilter");
+            const rows = document.querySelectorAll("#changesTable tr");
+
+            function filterTable() {
+                const selectedDate = dateFilter.value;
+                const selectedType = changeTypeFilter.value;
+
+                rows.forEach(row => {
+                    const rowDate = row.getAttribute("data-date");
+                    const rowType = row.getAttribute("data-type");
+
+                    const dateMatch = !selectedDate || rowDate === selectedDate;
+                    const typeMatch = !selectedType || rowType === selectedType;
+
+                    row.style.display = dateMatch && typeMatch ? "" : "none";
+                });
+            }
+
+            dateFilter.addEventListener("input", filterTable);
+            changeTypeFilter.addEventListener("change", filterTable);
+        });
+    </script>
+</body>
+</html>
